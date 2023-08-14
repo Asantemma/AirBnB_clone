@@ -2,18 +2,20 @@
 
 import cmd
 import json
-from models.base_model import BaseModel  # Import your model classes here
+from models.base_model import BaseModel
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
+        print("GoodBye!")
         return True
 
     def do_EOF(self, arg):
         """Exit the program using Ctrl-D (EOF)"""
-        print()  # Print a newline before exiting
+        print()
         return True
 
     def emptyline(self):
@@ -71,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
         key = "{}.{}".format(class_name, instance_id)
         if key in BaseModel.__objects:
             del BaseModel.__objects[key]
-            BaseModel.save_to_file()  # Assuming this method saves data to a file
+            BaseModel.save_to_file()
         else:
             print("** no instance found **")
 
@@ -121,6 +123,7 @@ class HBNBCommand(cmd.Cmd):
         instance = BaseModel.__objects[key]
         setattr(instance, attribute_name, value)
         instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
