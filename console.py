@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""AirBnB project entry point- the commandline interpreter """
+"""AirBnB point of entry"""
 
 import cmd
 import json
@@ -19,7 +19,7 @@ all_classes = {
     "Review": Review,
     "Place": Place,
     "State": State,
-    "City": City
+    "City": City,
 }
 
 
@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
-        print("GoodBye!")
+        print("GOODBYE!")
         return True
 
     def do_EOF(self, arg):
@@ -143,22 +143,7 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, value)
         instance.save()
 
-    def do_count(self, arg):
-        """Print the count all class instances"""
-        current_class = globals().get(arg, None)
-        if current_class is None:
-            print("** class doesn't exist **")
-            return
-        count = 0
-        for obj in storage.all().values():
-            if obj.__class__.__name__ == arg:
-                count += 1
-        print(count)
-
-    def default(self, arg):
-        if arg is None:
-            return
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
